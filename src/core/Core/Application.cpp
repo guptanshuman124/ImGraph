@@ -298,11 +298,11 @@ ExitStatus App::Application::run() {
           
           if (parser.compile(func_str, expression)) {
             // grid parameters
-            const double x_min = -canvas_sz.x / (2 * zoom);
-            const double x_max = canvas_sz.x / (2 * zoom);
-            const double y_min = -canvas_sz.y / (2 * zoom);
-            const double y_max = canvas_sz.y / (2 * zoom);
-            
+            const double x_min = (-canvas_sz.x * 0.5f - originOffset.x) / zoom;
+            const double x_max = ( canvas_sz.x * 0.5f - originOffset.x) / zoom;
+            const double y_min = (-canvas_sz.y * 0.5f + originOffset.y) / zoom;
+            const double y_max = ( canvas_sz.y * 0.5f + originOffset.y) / zoom;
+                        
             // adaptive step size with performance limit
             const double step = std::max(0.025, 1.5 / zoom);
             const ImU32 inequality_color = IM_COL32(100, 150, 255, 180);
@@ -380,10 +380,10 @@ ExitStatus App::Application::run() {
             
             if (compile_ok) {
               // grid parameters
-              const double x_min = -canvas_sz.x / (2 * zoom);
-              const double x_max = canvas_sz.x / (2 * zoom);
-              const double y_min = -canvas_sz.y / (2 * zoom);
-              const double y_max = canvas_sz.y / (2 * zoom);
+              const double x_min = (-canvas_sz.x * 0.5f - originOffset.x) / zoom;
+              const double x_max = ( canvas_sz.x * 0.5f - originOffset.x) / zoom;
+              const double y_min = (-canvas_sz.y * 0.5f + originOffset.y) / zoom;
+              const double y_max = ( canvas_sz.y * 0.5f + originOffset.y) / zoom;
               const double step = std::max(0.008, 1.0 / zoom); //dynamic step based on zoom level
               
               const ImU32 implicit_color = IM_COL32(64, 199, 128, 255);
