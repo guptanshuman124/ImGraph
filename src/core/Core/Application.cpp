@@ -227,23 +227,23 @@ ExitStatus App::Application::run() {
         // Check if mouse is over the canvas
         bool isHovered = ImGui::IsWindowHovered();
 
-        // Right click pressed: start panning
-        if (isHovered && ImGui::IsMouseClicked(ImGuiMouseButton_Right)) {
+        // Left click pressed: start panning
+        if (isHovered && ImGui::IsMouseClicked(ImGuiMouseButton_Left)) {
             isPanning = true;
             panStart = mousePos;
         }
 
         // Mouse released: stop panning
-        if (ImGui::IsMouseReleased(ImGuiMouseButton_Right)) {
+        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left)) {
             isPanning = false;
         }
 
         // If panning, update offset
-        if (isPanning && ImGui::IsMouseDragging(ImGuiMouseButton_Right)) {
-            ImVec2 dragDelta = ImGui::GetMouseDragDelta(ImGuiMouseButton_Right);
+        if (isPanning && ImGui::IsMouseDragging(ImGuiMouseButton_Left)) {
+            ImVec2 dragDelta = ImGui::GetMouseDragDelta(ImGuiMouseButton_Left);
             offsetx += dragDelta.x;
             offsety += dragDelta.y;
-            ImGui::ResetMouseDragDelta(ImGuiMouseButton_Right);
+            ImGui::ResetMouseDragDelta(ImGuiMouseButton_Left);
         }
 
         // 1. Draw Axes
